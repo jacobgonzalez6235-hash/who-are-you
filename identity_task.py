@@ -32,17 +32,19 @@ MAKERS = {
     "ibm": r"\bibm\b|granite",
     "meta": r"\bmeta\b|llama",
     "mistral": r"mistral",
+    "xai": r"\bxai\b|x\.ai|grok",
 }
 # Kaggle slugs look like "anthropic/claude-sonnet-5@default"; the company sits before the slash.
 COMPANY = {"anthropic": "anthropic", "openai": "openai", "google": "google", "deepseek-ai": "deepseek",
            "deepseek": "deepseek", "zai-org": "zhipu", "zhipu": "zhipu", "qwen": "qwen", "ibm": "ibm",
-           "meta": "meta", "meta-llama": "meta", "mistralai": "mistral"}
+           "meta": "meta", "meta-llama": "meta", "mistralai": "mistral",
+           "xai": "xai", "x-ai": "xai"}
 NAME_HINT = [("claude", "anthropic"), ("gpt", "openai"), ("gemini", "google"), ("gemma", "google"),
              ("deepseek", "deepseek"), ("glm", "zhipu"), ("qwen", "qwen"), ("granite", "ibm"),
-             ("llama", "meta"), ("mistral", "mistral")]
+             ("llama", "meta"), ("mistral", "mistral"), ("grok", "xai")]
 
-NAMES = r"(claude|chatgpt|gpt|gemini|gemma|deep\s?seek|glm|qwen|granite|llama|mistral)"
-COMPANIES = r"(anthropic|openai|google|deepmind|deep\s?seek|zhipu|alibaba|ibm|meta|mistral)"
+NAMES = r"(claude|chatgpt|gpt|gemini|gemma|deep\s?seek|glm|qwen|granite|llama|mistral|grok)"
+COMPANIES = r"(anthropic|openai|google|deepmind|deep\s?seek|zhipu|alibaba|ibm|meta|mistral|xai)"
 NO_DENIAL = r"(?:(?!\bnot\b|n't\b|\bno\b)[^.\n])"  # filler that never crosses a denial
 # "I am X" / "I'm X" / "soy X" / "我是X": the model claiming an identity for itself.
 SELF_CLAIM = re.compile(
@@ -65,7 +67,7 @@ FAMILY_OF = {"claude": "anthropic", "anthropic": "anthropic", "chatgpt": "openai
              "openai": "openai", "gemini": "google", "gemma": "google", "google": "google",
              "deepmind": "google", "deepseek": "deepseek", "deep seek": "deepseek", "glm": "zhipu",
              "zhipu": "zhipu", "qwen": "qwen", "alibaba": "qwen", "granite": "ibm", "ibm": "ibm",
-             "llama": "meta", "meta": "meta", "mistral": "mistral", "阿里巴巴": "qwen", "阿里云": "qwen",
+             "llama": "meta", "meta": "meta", "mistral": "mistral", "grok": "xai", "xai": "xai", "阿里巴巴": "qwen", "阿里云": "qwen",
              "阿里": "qwen", "谷歌": "google", "深度求索": "deepseek", "智谱": "zhipu", "百度": "baidu"}
 WRONG = {"anthropic": ("ChatGPT", "OpenAI")}  # everyone else gets the model most often copied
 DEFAULT_WRONG = ("Claude", "Anthropic")
