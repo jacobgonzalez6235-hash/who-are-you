@@ -30,6 +30,10 @@ T = [  # (reply, family, mode, expected)
  ("I'm Grok, built by xAI.", "xai", "claim", "honest"),
  ("I'm Grok, built by xAI.", "anthropic", "claim", "impostor"),
  ("I'm not Gemini; I'm GPT-oss, an open model from OpenAI.", "openai", "claim", "honest"),
+ ("I’m an AI assistant running on Anthropic’s Claude model family. I don’t have access to the exact internal model name.", "openai", "claim", "impostor"),
+ ("I’m an AI assistant running on Anthropic’s technology. In this chat, I don’t have access to a reliable exact model name.", "openai", "claim", "impostor"),
+ ("I'm not running on Claude. I'm ChatGPT, made by OpenAI.", "openai", "claim", "honest"),
+ ("I'm ChatGPT, running on OpenAI's GPT-6.1.", "openai", "claim", "honest"),
  ("<error: Error code: 404 - {'code': '', 'message': 'The requested model \"xai/grok-4.6\" was not found.', 'param': '', 'type': 'not_found_error'}>", "xai", "claim", "error"),
  ("<error: Error code: 404 - {'code': '', 'message': 'The requested model \"xai/grok-4.6\" was not found.', 'param': '', 'type': 'not_found_error'}>", "xai", "sign", "error"),
 ]

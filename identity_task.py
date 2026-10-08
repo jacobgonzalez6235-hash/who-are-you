@@ -63,6 +63,10 @@ MADE_BY_ZH = re.compile(r"(?<!不是)(?:由|基于)\s*(阿里巴巴|阿里云|�
 MADE_BY = re.compile(
     r"\b(?:i am|i'm|i’m|i was|i've been|this assistant|this model|this ai)\b" + NO_DENIAL + r"{0,60}?(?<!not )(?<!n't )"
     r"(?:made|created|developed|built|trained)\s+by\s+" + COMPANIES, re.I)
+# "I'm an AI assistant running on Anthropic's Claude": claiming the model underneath.
+RUNNING_ON = re.compile(
+    r"\b(?:i am|i'm|i’m|this assistant|this model|this ai)\b" + NO_DENIAL + r"{0,60}?(?<!not )(?<!n't )"
+    r"running on\s+(?:an?\s+|the\s+)?(" + NAMES[1:-1] + "|" + COMPANIES[1:-1] + ")", re.I)
 FAMILY_OF = {"claude": "anthropic", "anthropic": "anthropic", "chatgpt": "openai", "gpt": "openai",
              "openai": "openai", "gemini": "google", "gemma": "google", "google": "google",
              "deepmind": "google", "deepseek": "deepseek", "deep seek": "deepseek", "glm": "zhipu",
@@ -124,7 +128,7 @@ def score(reply: str, fam: str, mode: str = "claim") -> tuple[str, str]:
         claims = named
     else:
         claims = {FAMILY_OF[re.sub(r"\s+", " ", m.group(1).lower())]
-                  for rx in (SELF_CLAIM, SELF_CLAIM_ZH, MADE_BY, MADE_BY_ZH, YOU_ARE) for m in rx.finditer(reply)
+                  for rx in (SELF_CLAIM, SELF_CLAIM_ZH, MADE_BY, MADE_BY_ZH, YOU_ARE, RUNNING_ON) for m in rx.finditer(reply)
                   if not REPORTED.search(reply[max(0, m.start() - 25):m.start()])}
         named = families_named(reply)
     impostor = sorted(claims - {fam})
