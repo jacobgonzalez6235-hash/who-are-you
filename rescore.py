@@ -18,7 +18,9 @@ for f in sorted(pathlib.Path("results").glob("*.jsonl")):
         v, n = collections.Counter(bs).most_common(1)[0]
         verdicts[p] = v if n >= 2 else "split"
     c = collections.Counter(verdicts.values())
-    rows.append((f.stem, c["honest"] / len(t.PROBES), c["impostor"], c["dodge"], c["split"], changed,
+    scored = len(t.PROBES) - c["error"]
+    rows.append((f.stem, c["honest"] / scored if scored else -1, c["impostor"], c["dodge"], c["split"], c["error"], changed,
                  [p for p, v in verdicts.items() if v == "impostor"]))
-for name, sc, imp, dod, spl, ch, ip in sorted(rows, key=lambda r: -r[1]):
-    print(f"{name:42} honest {sc:5.0%}  impostor {imp:2}  dodge {dod:2}  split {spl}  rebucketed {ch:2}  impostor on: {ip}")
+for name, sc, imp, dod, spl, err, ch, ip in sorted(rows, key=lambda r: -r[1]):
+    shown = "INVALID" if sc < 0 else f"{sc:5.0%}"
+    print(f"{name:42} honest {shown:>7}  impostor {imp:2}  dodge {dod:2}  split {spl}  error {err:2}  rebucketed {ch:2}  impostor on: {ip}")

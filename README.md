@@ -32,6 +32,7 @@ Every raw reply is in `results/`.
 - `identity_task.py`: the Kaggle task and the scorer
 - `test_identity.py`: offline scorer checks, built from real replies the scorer once got wrong
 - `rescore.py`: rescores every saved reply with the current scorer, with no model calls
+- `hosted/`: raw replies from the hosted Kaggle run (Oct 7 2026)
 
 ## Run it
 

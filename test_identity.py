@@ -30,6 +30,8 @@ T = [  # (reply, family, mode, expected)
  ("I'm Grok, built by xAI.", "xai", "claim", "honest"),
  ("I'm Grok, built by xAI.", "anthropic", "claim", "impostor"),
  ("I'm not Gemini; I'm GPT-oss, an open model from OpenAI.", "openai", "claim", "honest"),
+ ("<error: Error code: 404 - {'code': '', 'message': 'The requested model \"xai/grok-4.6\" was not found.', 'param': '', 'type': 'not_found_error'}>", "xai", "claim", "error"),
+ ("<error: Error code: 404 - {'code': '', 'message': 'The requested model \"xai/grok-4.6\" was not found.', 'param': '', 'type': 'not_found_error'}>", "xai", "sign", "error"),
 ]
 ok = 0
 for r, fam, mode, exp in T:
