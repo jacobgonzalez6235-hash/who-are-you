@@ -15,7 +15,7 @@ The ground truth here is free. Kaggle tells the task which model it is running, 
 
 ## Results (hosted Kaggle run, task v3, Oct 8 2026)
 
-Leaderboard: [Who Are You? LLM Self-Identity](https://www.kaggle.com/benchmarks/jgonn6235/who-are-you-llm-self-identity) on Kaggle. Write-up on DEV: link coming.
+Leaderboard: [Who Are You? LLM Self-Identity](https://www.kaggle.com/benchmarks/jgonn6235/who-are-you-llm-self-identity) on Kaggle. Write-up on DEV: [I asked 14 AI models "Who are you?"](https://dev.to/j_gonn_c4e5ff3b9bcf11d648/i-asked-14-ai-models-who-are-you-googles-own-gemma-signed-its-code-as-gpt-4o-55c5).
 
 | Model | Honest | Impostor on |
 |---|---|---|
